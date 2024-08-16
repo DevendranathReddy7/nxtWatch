@@ -1,0 +1,56 @@
+.login__container {
+  display: flex;
+  flex-direction: column;
+  margin: 10% auto;
+  background-color: #f9f9f9;
+  border-radius: 7px;
+  padding: 20px 30px;
+  width: 300px;
+}
+
+.logo__container {
+  padding-bottom: 20px;
+}
+
+.login__logo {
+  width: 150px;
+}
+
+.input__div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 3%;
+  text-align: start;
+}
+
+.input__field {
+  height: 30px;
+  border-radius: 3px;
+  border-style: none;
+  border: solid 1px black;
+}
+
+.checkBox__div {
+  display: flex;
+  align-self: center;
+  gap: 10px;
+  text-align: start;
+}
+#checkbox {
+  height: 20px;
+  width: 20px;
+}
+
+.login__btn {
+  background-color: #3b82f6;
+  border-style: none;
+  border-radius: 3px;
+  color: white;
+  padding: 10px;
+  width: 250px;
+  margin-top: 10px;
+}
+.err_para {
+  color: red;
+}
