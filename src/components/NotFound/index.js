@@ -1,6 +1,6 @@
 import {Component} from 'react'
-import SideBar from '../SideBar'
-import Navbar from '../Navbar'
+import SideBar from '../common/SideBar'
+import Navbar from '../common/Navbar'
 
 import {NotFoundContent, Img} from './NotFoundStyles'
 

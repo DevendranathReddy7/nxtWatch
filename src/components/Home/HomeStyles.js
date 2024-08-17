@@ -35,7 +35,7 @@ border-style:none;
 // Search Start
 export const SearchContainer = Styled.div`
 display:flex;
-margin:1%;
+margin:1% 0%;
 `
 export const SearchInput = Styled.input`
 width:40%;
@@ -60,6 +60,8 @@ export const VideoTitleContainer = Styled.div`
 display:flex;
 align-items:flex-start;
 color:#606060;
+gap:10px;
+
 `
 
 export const ChannelLogo = Styled.div`
@@ -81,10 +83,30 @@ flex-direction:column;
 export const SpanTitle = Styled.span`
 display:flex;
 align-items:center;
+gap:5px;
 `
 
 export const P = Styled.p`
-margin-bottom:-10px
+margin-bottom:-10px;
 `
 
 // Video End
+
+// no videos Start
+
+export const NoVideosContent = Styled.div`
+flex:3;
+`
+
+export const Img = Styled.img`
+height:300px;`
+
+export const Button = Styled.button`
+background-color:#3b82f6;
+border-style:none;
+border: 2px solid #3b82f6;
+color:white;
+border-radius:3px;
+padding:10px;`
+
+// End

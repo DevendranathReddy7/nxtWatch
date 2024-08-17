@@ -2,7 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {IoMdSearch} from 'react-icons/io'
 
-import Navbar from '../Navbar'
+import Navbar from '../common/Navbar'
 
 import {
   HomeMainContent,
@@ -18,7 +18,7 @@ import {MainContainer} from '../common/CommonStyles'
 
 import LoaderComp from '../Loader'
 import VideoList from './VideoList'
-import SideBar from '../SideBar'
+import SideBar from '../common/SideBar'
 import FailureView from '../common/FailureView'
 
 class Home extends Component {
@@ -85,7 +85,7 @@ class Home extends Component {
                 <div>
                   <BannerImg
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                    alt="website logo"
+                    alt="nxt watch logo"
                   />
                   <h4>Buy Nxt Watch Premium prepaid plans with UPI</h4>
                   <ButtonGet>GET IT NOW</ButtonGet>
@@ -101,12 +101,15 @@ class Home extends Component {
 
             <SearchContainer>
               <SearchInput
-                type="text"
+                type="search"
                 placeholder="Search"
                 value={searchValue}
                 onChange={this.searchHandler}
               />
-              <SearchBtn onClick={this.searchButtonHandle}>
+              <SearchBtn
+                onClick={this.searchButtonHandle}
+                data-testid="searchButton"
+              >
                 <IoMdSearch size={20} />
               </SearchBtn>
             </SearchContainer>

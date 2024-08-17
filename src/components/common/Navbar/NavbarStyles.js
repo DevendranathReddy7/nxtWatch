@@ -4,6 +4,7 @@ export const NavContainer = Styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0.5% 1%;
+  padding:10px;
   `
 
 export const NavLogo = Styled.img`
@@ -11,7 +12,7 @@ width: 100px;
 `
 export const NavRight = Styled.div`
  display: flex;
-gap: 10px;
+gap: 20px;
 `
 
 export const NavIcons = Styled.img`
