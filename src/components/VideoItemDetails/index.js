@@ -1,17 +1,17 @@
-import {Component} from 'react'
-import {formatDistanceToNow} from 'date-fns'
+import { Component } from "react";
+import { formatDistanceToNow } from "date-fns";
 
-import Cookies from 'js-cookie'
-import {withRouter} from 'react-router-dom'
-import ReactPlayer from 'react-player'
+import Cookies from "js-cookie";
+import { withRouter } from "react-router-dom";
+import ReactPlayer from "react-player";
 
-import {BiLike, BiDislike} from 'react-icons/bi'
+import { BiLike, BiDislike } from "react-icons/bi";
 
-import {RiMenuAddFill} from 'react-icons/ri'
+import { RiMenuAddFill } from "react-icons/ri";
 
-import Navbar from '../common/Navbar'
-import {MainContainer} from '../common/CommonStyles'
-import SideBar from '../common/SideBar'
+import Navbar from "../common/Navbar";
+import { MainContainer } from "../common/CommonStyles";
+import SideBar from "../common/SideBar";
 import {
   VideoDetailContainer,
   VideoDescription,
@@ -19,10 +19,10 @@ import {
   VideoBottomDescription,
   ChannelImg,
   Span,
-} from './VideoItemDetails'
-import LoaderComp from '../Loader'
-import FailureView from '../common/FailureView'
-import savedVideosContext from '../../context/nxtWatchContext'
+} from "./VideoItemDetails";
+import LoaderComp from "../Loader";
+import FailureView from "../common/FailureView";
+import savedVideosContext from "../../context/nxtWatchContext";
 
 class VideoItemDetails extends Component {
   state = {
@@ -32,89 +32,83 @@ class VideoItemDetails extends Component {
     isLiked: false,
     isDisliked: false,
     isSaved: false,
-  }
+  };
 
   componentDidMount() {
-    this.getVideoDetails()
+    this.getVideoDetails();
   }
 
   getVideoDetails = async () => {
-    const {match} = this.props
-    const {id} = match.params
+    const { match } = this.props;
+    const { id } = match.params;
 
-    const jwtToken = Cookies.get('jwt_token')
-    const url = `https://apis.ccbp.in/videos/${id}`
+    const jwtToken = Cookies.get("jwt_token");
+    const url = `https://apis.ccbp.in/videos/${id}`;
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
         authorization: `Bearer ${jwtToken}`,
       },
-    }
-    const response = await fetch(url, options)
-    const data = await response.json()
+    };
+    const response = await fetch(url, options);
+    const data = await response.json();
 
     if (response.ok) {
       this.setState({
         isLoading: false,
         err: false,
         videoDetails: data.video_details,
-      })
+      });
     } else {
-      this.setState({isLoading: false, err: true, videoDetails: {}})
+      this.setState({ isLoading: false, err: true, videoDetails: {} });
     }
-  }
+  };
 
-  getDate = val => {
-    const date = new Date(val)
-    return formatDistanceToNow(date)
-  }
+  getDate = (val) => {
+    const date = new Date(val);
+    return formatDistanceToNow(date);
+  };
 
   handleLike = () => {
-    this.setState(prev => ({isLiked: !prev.isLiked, isDisliked: false}))
-  }
+    this.setState((prev) => ({ isLiked: !prev.isLiked, isDisliked: false }));
+  };
 
   handleDislike = () => {
-    this.setState(prev => ({isLiked: false, isDisliked: !prev.isDisliked}))
-  }
+    this.setState((prev) => ({ isLiked: false, isDisliked: !prev.isDisliked }));
+  };
 
   handleSave = (id, updateSavedVideos) => {
-    const {videoDetails} = this.state
+    const { videoDetails } = this.state;
 
     this.setState(
-      prev => ({isSaved: !prev.isSaved}),
+      (prev) => ({ isSaved: !prev.isSaved }),
       () => {
-        updateSavedVideos(videoDetails)
-      },
-    )
-  }
+        updateSavedVideos(videoDetails);
+      }
+    );
+  };
 
   renderSaved = (isSaved, id) => (
     <savedVideosContext.Consumer>
-      {value => {
-        const {updateSavedVideos} = value
+      {(value) => {
+        const { updateSavedVideos } = value;
 
         return (
           <Span
             active={isSaved}
             onClick={() => this.handleSave(id, updateSavedVideos)}
           >
-            <RiMenuAddFill /> <p>{isSaved ? 'Saved' : 'Save'}</p>
+            <RiMenuAddFill /> <p>{isSaved ? "Saved" : "Save"}</p>
           </Span>
-        )
+        );
       }}
     </savedVideosContext.Consumer>
-  )
+  );
 
   render() {
-    const {
-      videoDetails,
-      isLoading,
-      err,
-      isLiked,
-      isDisliked,
-      isSaved,
-    } = this.state
-    console.log(videoDetails)
+    const { videoDetails, isLoading, err, isLiked, isDisliked, isSaved } =
+      this.state;
+    console.log(videoDetails);
     return (
       <div>
         <Navbar />
@@ -126,7 +120,7 @@ class VideoItemDetails extends Component {
               <LoaderComp />
             ) : (
               <div className="responsive-container">
-                <ReactPlayer url={videoDetails.video_url} />
+                <ReactPlayer url={videoDetails.video_url} controls />
 
                 <p>{videoDetails.title}</p>
                 <VideoDescription>
@@ -176,8 +170,8 @@ class VideoItemDetails extends Component {
           {err && <FailureView />}
         </MainContainer>
       </div>
-    )
+    );
   }
 }
 
-export default withRouter(VideoItemDetails)
+export default withRouter(VideoItemDetails);
