@@ -13,6 +13,7 @@ import {
   ContactUs,
   ContactUsImg,
   Img,
+  P,
 } from './SideBarStyles'
 
 const SideBarItems = [
@@ -79,7 +80,7 @@ const SideBar = () => {
           />
         </ContactUsImg>
 
-        <p>Enjoy! Now</p>
+        <P>Enjoy! Now to see your channels and recommendations!</P>
       </ContactUs>
     </SideBarContainer>
   )

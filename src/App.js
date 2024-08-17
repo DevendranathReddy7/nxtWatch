@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import {Switch, Route} from 'react-router-dom'
-import Login from './components/Login'
 import ProtectedRoute from './components/ProtectedRoute'
+import Login from './components/Login'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import Trending from './components/Trending'

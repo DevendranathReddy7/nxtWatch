@@ -37,7 +37,7 @@ display:flex;
 flex-direction:column;
 margin-left:2%;
 position:fixed;
-top:70vh;
+top:65vh;
 `
 
 export const ContactUsImg = Styled.div`
@@ -48,5 +48,9 @@ gap:25px;
 
 export const Img = Styled.img`
 width:40px;
+`
+
+export const P = Styled.p`
+width:70%;
 `
 // Sidebar End
