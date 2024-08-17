@@ -9,11 +9,15 @@ height:100vh;
 `
 
 export const Li = Styled.li`
-list-style-type:none;
-padding:0px 20px;
-background-color:${props => props.isActive && '#d7dfe9'};
-border-radius:10px;
-
+  list-style-type: none;
+  padding: 0px 20px;
+  background-color: ${props => {
+    if (props.isActive) {
+      return props.darkMode ? '#383838' : '#d7dfe9'
+    }
+    return ''
+  }};
+  border-radius: 10px;
 
 `
 
@@ -44,6 +48,10 @@ export const ContactUsImg = Styled.div`
 display:flex;
 gap:25px;
 
+@media (max-width:1024px){
+    gap:10px;
+}
+
 `
 
 export const Img = Styled.img`
@@ -51,6 +59,11 @@ width:40px;
 `
 
 export const P = Styled.p`
-width:70%;
+width:50%;
+
+@media (max-width:1024px){
+    width:30%;
+}
+
 `
 // Sidebar End

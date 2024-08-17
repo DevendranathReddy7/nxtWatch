@@ -50,6 +50,16 @@ width:6%;
 export const VideoContainer = Styled.ul`
 display:grid;
 grid-template-columns:repeat(3, 1fr);
+
+@media(max-width:960px){
+    grid-template-columns:repeat(2, 1fr);
+
+}
+
+@media(max-width:810px){
+    grid-template-columns:repeat(1, 1fr);
+margin-left:5%
+}
 `
 
 export const VideoLi = Styled.li`

@@ -14,6 +14,13 @@ list-style-type:none;
 display:flex;
 padding:10px;
 
+@media (max-width:870px){
+    flex-direction:column;
+    padding:1px;
+    margin-left:15%;
+
+}
+
 `
 
 export const SavedVideoImg = Styled.img`

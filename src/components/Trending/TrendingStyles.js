@@ -14,6 +14,12 @@ list-style-type:none;
 display:flex;
 padding:10px;
 
+@media (max-width:870px){
+    flex-direction:column;
+    padding:1px;
+    margin-left:15%;
+
+}
 `
 
 export const TrendingVideoImg = Styled.img`
@@ -31,7 +37,7 @@ align-items:center;
 `
 
 export const P = Styled.p`
-margin-bottom:-10px;
+margin-bottom:-15px;
 `
 
 export const IconBtn = Styled.button`
@@ -40,5 +46,4 @@ padding:20px;
 border-radius:50%;
 border-style:none;
 margin-left:20px;
-
 `

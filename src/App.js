@@ -1,36 +1,36 @@
-import { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
-import Login from "./components/Login";
-import Home from "./components/Home";
-import NotFound from "./components/NotFound";
-import Trending from "./components/Trending";
-import Gaming from "./components/Gaming";
-import VideoItemDetails from "./components/VideoItemDetails";
-import SavedVideos from "./components/SavedVideos";
-import savedVideosContext from "./context/nxtWatchContext";
+import {Component} from 'react'
+import {Switch, Route, Redirect} from 'react-router-dom'
+import ProtectedRoute from './components/ProtectedRoute'
+import Login from './components/Login'
+import Home from './components/Home'
+import NotFound from './components/NotFound'
+import Trending from './components/Trending'
+import Gaming from './components/Gaming'
+import VideoItemDetails from './components/VideoItemDetails'
+import SavedVideos from './components/SavedVideos'
+import savedVideosContext from './context/nxtWatchContext'
 
-import "./App.css";
-import { GlobalStyle } from "./components/common/CommonStyles";
+import './App.css'
+import {GlobalStyle} from './components/common/CommonStyles'
 
 class App extends Component {
   state = {
     savedVideos: [],
     isDarkTheme: false,
-  };
+  }
 
-  updateSavedVideos = (video) => {
-    this.setState((prevState) => ({
+  updateSavedVideos = video => {
+    this.setState(prevState => ({
       savedVideos: [...prevState.savedVideos, video],
-    }));
-  };
+    }))
+  }
 
   updateTheme = () => {
-    this.setState((prev) => ({ isDarkTheme: !prev.isDarkTheme }));
-  };
+    this.setState(prev => ({isDarkTheme: !prev.isDarkTheme}))
+  }
 
   render() {
-    const { savedVideos, isDarkTheme } = this.state;
+    const {savedVideos, isDarkTheme} = this.state
 
     return (
       <div>
@@ -64,8 +64,8 @@ class App extends Component {
           </Switch>
         </savedVideosContext.Provider>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
