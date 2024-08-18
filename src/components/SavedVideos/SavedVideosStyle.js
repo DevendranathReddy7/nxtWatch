@@ -25,6 +25,7 @@ padding:10px;
 
 export const SavedVideoImg = Styled.img`
 width:276px;
+height:153px;
 `
 
 export const SavedVideoContent = Styled.ul`

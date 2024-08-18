@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 import {formatDistanceToNow} from 'date-fns'
 import {FaFire} from 'react-icons/fa'
 
@@ -54,6 +55,15 @@ class Trending extends Component {
     return formatDistanceToNow(date)
   }
 
+  retryHandler = () => {
+    this.getTrendingVideos()
+  }
+
+  handleVideoClick = id => {
+    const {history} = this.props
+    history.push(`/videos/${id}`)
+  }
+
   render() {
     const {isLoading, videosList, err} = this.state
     return (
@@ -85,7 +95,10 @@ class Trending extends Component {
                     published_at: publishedAt,
                   } = video
                   return (
-                    <TrendingVideoLi key={id}>
+                    <TrendingVideoLi
+                      key={id}
+                      onClick={() => this.handleVideoClick(id)}
+                    >
                       <TrendingVideoImg src={thumbnailUrl} alt={title} />
                       <TrendingVideoContent>
                         <h3>{title}</h3>
@@ -101,11 +114,11 @@ class Trending extends Component {
               </TrendingVideos>
             )}
 
-            {err && <FailureView />}
+            {err && <FailureView handleRetry={this.retryHandler} />}
           </TrendingContainer>
         </MainContainer>
       </div>
     )
   }
 }
-export default Trending
+export default withRouter(Trending)

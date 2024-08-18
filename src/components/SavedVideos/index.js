@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import {formatDistanceToNow} from 'date-fns'
+import {withRouter} from 'react-router-dom'
 
 import {RiMenuAddFill} from 'react-icons/ri'
 
@@ -24,6 +25,11 @@ class SavedVideos extends Component {
   getDate = val => {
     const date = new Date(val)
     return formatDistanceToNow(date)
+  }
+
+  handleVideoClick = id => {
+    const {history} = this.props
+    history.push(`/videos/${id}`)
   }
 
   render() {
@@ -58,7 +64,10 @@ class SavedVideos extends Component {
                           published_at: publishedAt,
                         } = video
                         return (
-                          <SavedVideoLi key={id}>
+                          <SavedVideoLi
+                            key={id}
+                            onClick={() => this.handleVideoClick(id)}
+                          >
                             <SavedVideoImg src={thumbnailUrl} alt={title} />
                             <SavedVideoContent>
                               <h3>{title}</h3>
@@ -84,4 +93,4 @@ class SavedVideos extends Component {
   }
 }
 
-export default SavedVideos
+export default withRouter(SavedVideos)

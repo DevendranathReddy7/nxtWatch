@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 import {SiYoutubegaming} from 'react-icons/si'
 import Cookies from 'js-cookie'
 
@@ -47,6 +48,15 @@ class Gaming extends Component {
     }
   }
 
+  retryHandler = () => {
+    this.getGamingVideos()
+  }
+
+  handleVideoClick = id => {
+    const {history} = this.props
+    history.push(`/videos/${id}`)
+  }
+
   render() {
     const {isLoading, videosList, err} = this.state
     return (
@@ -75,7 +85,10 @@ class Gaming extends Component {
                     view_count: viewCount,
                   } = video
                   return (
-                    <GamingVideoLi key={id}>
+                    <GamingVideoLi
+                      key={id}
+                      onClick={() => this.handleVideoClick(id)}
+                    >
                       <GamingVideoImg src={thumbnailUrl} alt={title} />
                       <GamingVideoContent>
                         <h3>{title}</h3>
@@ -87,11 +100,11 @@ class Gaming extends Component {
               </GamingVideos>
             )}
 
-            {err && <FailureView />}
+            {err && <FailureView handleRetry={this.retryHandler} />}
           </GamingContainer>
         </MainContainer>
       </div>
     )
   }
 }
-export default Gaming
+export default withRouter(Gaming)

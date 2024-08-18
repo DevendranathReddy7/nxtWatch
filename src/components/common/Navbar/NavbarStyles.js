@@ -26,3 +26,21 @@ border-style: none;
   background-color: transparent;
   color: #3b82f6;
 `
+
+export const ConfirmModal = Styled.div`
+padding: 20px; 
+text-align: center;
+background-color:#383838;
+border-radius:5px;
+color:white;
+`
+
+export const ConfirmBtn = Styled.button`
+    margin-right: 10px;
+    border-style: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    border: 2px solid #3b82f6;
+    background-color: ${props => (props.confirm ? '#3b82f6' : 'transparent')};
+    color: ${props => (props.confirm ? 'white' : '#3b82f6')};
+`

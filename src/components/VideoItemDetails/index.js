@@ -64,6 +64,10 @@ class VideoItemDetails extends Component {
     }
   }
 
+  handleRetry = () => {
+    this.getVideoDetails()
+  }
+
   getDate = val => {
     const date = new Date(val)
     return formatDistanceToNow(date)
@@ -77,28 +81,33 @@ class VideoItemDetails extends Component {
     this.setState(prev => ({isLiked: false, isDisliked: !prev.isDisliked}))
   }
 
-  handleSave = (id, updateSavedVideos) => {
-    const {videoDetails} = this.state
+  //   handleSave = (id, updateSavedVideos) => {
+  //     const {videoDetails} = this.state
 
-    this.setState(
-      prev => ({isSaved: !prev.isSaved}),
-      () => {
-        updateSavedVideos(videoDetails)
-      },
-    )
-  }
+  //     this.setState(
+  //       prev => ({isSaved: !prev.isSaved}),
+  //       () => {
+  //         updateSavedVideos(videoDetails)
+  //       },
+  //     )
+  //   }
 
   renderSaved = (isSaved, id) => (
     <savedVideosContext.Consumer>
       {value => {
-        const {updateSavedVideos} = value
+        const {savedVideos, updateSavedVideos} = value
+        const alreadySaved = savedVideos.some(video => video.id === id)
+        const {videoDetails} = this.state
+        const updateSaved = () => {
+          updateSavedVideos(id, videoDetails)
+        }
 
         return (
           <Span
-            active={isSaved}
-            onClick={() => this.handleSave(id, updateSavedVideos)}
+            active={alreadySaved}
+            onClick={() => updateSaved(id, updateSavedVideos)}
           >
-            <RiMenuAddFill /> <p>{isSaved ? 'Saved' : 'Save'}</p>
+            <RiMenuAddFill /> <p>{alreadySaved ? 'Saved' : 'Save'}</p>
           </Span>
         )
       }}
@@ -173,7 +182,7 @@ class VideoItemDetails extends Component {
             )}
           </VideoDetailContainer>
 
-          {err && <FailureView />}
+          {err && <FailureView handleRetry={this.retryHandler} />}
         </MainContainer>
       </div>
     )

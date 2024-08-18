@@ -58,6 +58,10 @@ class Home extends Component {
     }
   }
 
+  retryHandler = () => {
+    this.getVideos()
+  }
+
   closeBanner = () => {
     this.setState({showBanner: false})
   }
@@ -116,7 +120,7 @@ class Home extends Component {
               </SearchBtn>
             </SearchContainer>
 
-            {err && <FailureView />}
+            {err && <FailureView handleRetry={this.retryHandler} />}
             {isLoading ? <LoaderComp /> : <VideoList videos={videosList} />}
           </HomeMainContent>
         </MainContainer>

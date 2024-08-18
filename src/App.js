@@ -19,10 +19,24 @@ class App extends Component {
     isDarkTheme: false,
   }
 
-  updateSavedVideos = video => {
-    this.setState(prevState => ({
-      savedVideos: [...prevState.savedVideos, video],
-    }))
+  updateSavedVideos = (id, video) => {
+    this.setState(prevState => {
+      const isAlreadySaved = prevState.savedVideos.some(
+        savedVideo => savedVideo.id === id,
+      )
+
+      if (isAlreadySaved) {
+        return {
+          savedVideos: prevState.savedVideos.filter(
+            savedVideo => savedVideo.id !== id,
+          ),
+        }
+      }
+
+      return {
+        savedVideos: [...prevState.savedVideos, video],
+      }
+    })
   }
 
   updateTheme = () => {
