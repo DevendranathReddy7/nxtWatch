@@ -1,137 +1,143 @@
-import {Component} from 'react'
-import {withRouter} from 'react-router-dom'
+import { Component } from "react";
+import { withRouter } from "react-router-dom";
 
-import Cookies from 'js-cookie'
-import './index.css'
-import LoaderComp from '../Loader'
+import Cookies from "js-cookie";
+import LoaderComp from "../Loader";
+import {
+  LoginContainer,
+  LoginLogo,
+  LogoContainer,
+  FormContainer,
+  InputDiv,
+  InputField,
+  CheckBoxDiv,
+  Checkbox,
+  LoginBtn,
+  ErrPara,
+} from "./LoginStyles";
 
 class Login extends Component {
   state = {
-    userName: '',
-    password: '',
+    userName: "",
+    password: "",
     err: false,
     isLoading: false,
-    errMsg: '',
+    errMsg: "",
     checked: false,
-  }
+  };
 
   componentDidMount() {
-    const token = Cookies.get('jwt_token')
-    const {history} = this.props
+    const token = Cookies.get("jwt_token");
+    const { history } = this.props;
     if (token !== undefined) {
-      history.replace('/')
+      history.replace("/");
     }
-    return null
+    return null;
   }
 
-  userNameHandler = e => {
-    const {value} = e.target
-    this.setState({userName: value})
-  }
+  userNameHandler = (e) => {
+    const { value } = e.target;
+    this.setState({ userName: value });
+  };
 
-  passwordHandler = e => {
-    const {value} = e.target
-    this.setState({password: value})
-  }
+  passwordHandler = (e) => {
+    const { value } = e.target;
+    this.setState({ password: value });
+  };
 
-  showPswdHandler = e => {
-    this.setState({checked: e.target.checked})
-  }
+  showPswdHandler = (e) => {
+    this.setState({ checked: e.target.checked });
+  };
 
-  submitHandler = async e => {
-    e.preventDefault()
-    const {userName, password} = this.state
-    this.setState({isLoading: true})
+  submitHandler = async (e) => {
+    e.preventDefault();
+    const { userName, password } = this.state;
+    this.setState({ isLoading: true });
 
-    const url = 'https://apis.ccbp.in/login'
+    const url = "https://apis.ccbp.in/login";
     const options = {
-      method: 'POST',
-      body: JSON.stringify({username: userName, password}),
-    }
+      method: "POST",
+      body: JSON.stringify({ username: userName, password }),
+    };
 
-    const resp = await fetch(url, options)
-    const data = await resp.json()
+    const resp = await fetch(url, options);
+    const data = await resp.json();
 
     if (resp.ok) {
       this.setState({
-        userName: '',
-        password: '',
+        userName: "",
+        password: "",
         err: false,
         isLoading: false,
-        errMsg: '',
-      })
-      Cookies.set('jwt_token', data.jwt_token, {expires: 1})
-      const {history} = this.props
-      history.replace('/')
+        errMsg: "",
+      });
+      Cookies.set("jwt_token", data.jwt_token, { expires: 1 });
+      const { history } = this.props;
+      history.replace("/");
     } else {
       this.setState({
         err: true,
         isLoading: false,
         errMsg: data.error_msg,
-      })
+      });
     }
-  }
+  };
 
   render() {
-    const {userName, password, err, isLoading, errMsg, checked} = this.state
+    const { userName, password, err, isLoading, errMsg, checked } = this.state;
 
     return (
-      <center className="login__container">
-        <div className="logo__container">
-          <img
+      <LoginContainer>
+        <LogoContainer>
+          <LoginLogo
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
             alt="website logo"
-            className="login__logo"
           />
-        </div>
+        </LogoContainer>
 
-        <form onSubmit={this.submitHandler} className="form__container">
-          <div className="input__div">
+        <FormContainer onSubmit={this.submitHandler}>
+          <InputDiv>
             <label htmlFor="username">USERNAME</label>
-            <input
+            <InputField
               id="username"
               type="text"
               placeholder=""
               value={userName}
               onChange={this.userNameHandler}
-              className="input__field"
             />
-          </div>
+          </InputDiv>
 
-          <div className="input__div">
+          <InputDiv>
             <label htmlFor="password">PASSWORD</label>
-            <input
+            <InputField
               id="password"
-              type={checked ? 'text' : 'password'}
+              type={checked ? "text" : "password"}
               placeholder=""
               value={password}
               onChange={this.passwordHandler}
-              className="input__field"
             />
-          </div>
+          </InputDiv>
 
-          <div className="checkBox__div">
-            <input
+          <CheckBoxDiv>
+            <Checkbox
               type="checkbox"
               id="checkbox"
               value={checked}
               onChange={this.showPswdHandler}
             />
             <label htmlFor="checkbox">Show Password</label>
-          </div>
+          </CheckBoxDiv>
 
           <div>
-            <button type="submit" className="login__btn">
-              Login
-            </button>
+            <LoginBtn type="submit">Login</LoginBtn>
           </div>
-          {err && <p className="err_para">*{errMsg}</p>}
-        </form>
+          {err && <ErrPara>*{errMsg}</ErrPara>}
+        </FormContainer>
 
         {isLoading && <LoaderComp />}
-      </center>
-    )
+      </LoginContainer>
+    );
   }
 }
 
-export default withRouter(Login)
+export default withRouter(Login);

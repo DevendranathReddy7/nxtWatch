@@ -1,4 +1,6 @@
-.login__container {
+import styled from "styled-components";
+
+export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10% auto;
@@ -6,43 +8,46 @@
   border-radius: 7px;
   padding: 20px 30px;
   width: 300px;
-}
+`;
 
-.logo__container {
+export const LogoContainer = styled.div`
   padding-bottom: 20px;
-}
+`;
 
-.login__logo {
+export const LoginLogo = styled.img`
   width: 150px;
-}
+`;
 
-.input__div {
+export const FormContainer = styled.form``;
+
+export const InputDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 3%;
   text-align: start;
-}
+`;
 
-.input__field {
+export const InputField = styled.input`
   height: 30px;
   border-radius: 3px;
   border-style: none;
   border: solid 1px black;
-}
+`;
 
-.checkBox__div {
+export const CheckBoxDiv = styled.div`
   display: flex;
   align-self: center;
   gap: 10px;
   text-align: start;
-}
-#checkbox {
+`;
+
+export const Checkbox = styled.input`
   height: 20px;
   width: 20px;
-}
+`;
 
-.login__btn {
+export const LoginBtn = styled.button`
   background-color: #3b82f6;
   border-style: none;
   border-radius: 3px;
@@ -50,7 +55,8 @@
   padding: 10px;
   width: 250px;
   margin-top: 10px;
-}
-.err_para {
+`;
+
+export const ErrPara = styled.p`
   color: red;
-}
+`;
