@@ -18,8 +18,8 @@ import {
 
 class Login extends Component {
   state = {
-    userName: "",
-    password: "",
+    userName: "Rahul",
+    password: "rahul@2021",
     err: false,
     isLoading: false,
     errMsg: "",
